@@ -19,10 +19,6 @@ public class WeitgthedSum implements AlgoritmoRecomendacion {
         this.ws = ws;
         
     }
-    
-    public float prediccion(Usuario u, Pelicula p) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
     @Override
     public float prediccion() {
