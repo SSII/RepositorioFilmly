@@ -1,0 +1,6 @@
+nombre/Alex/pelicula/Superman/nota/3
+nombre/Ricardo/pelicula/Superman/nota/5
+nombre/Eva/pelicula/Superman/nota/2
+nombre/Peter/pelicula/Superman/nota/2
+nombre/Alvaro/pelicula/Superman/nota/3
+nombre/Zeki/pelicula/Superman/nota/4
