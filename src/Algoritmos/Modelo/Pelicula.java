@@ -4,18 +4,33 @@
  */
 package Algoritmos.Modelo;
 
+import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author Alvaro
  */
-public class Pelicula {
+@Entity
+public class Pelicula implements Serializable {
     
+    @Column(name="titulo")
     private String _titulo;
+    @Column(name="anho")
     private int _anno;
+    @Id
+    @Column(name="id")
     private int _id;
+    @OneToMany(targetEntity=Valoracion.class, cascade=CascadeType.ALL, mappedBy="valoraciones")
     private List<Valoracion> _valoraciones;
+
+    public Pelicula() {
+    }
 
     public Pelicula(String _titulo, int _anno, int _id, List<Valoracion> _valoraciones) {
         this._titulo = _titulo;
