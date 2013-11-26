@@ -4,6 +4,7 @@
  */
 package Algoritmos.MedidasSimilitud;
 
+import Algoritmos.Modelo.Pelicula;
 import Algoritmos.Modelo.Usuario;
 
 /**
@@ -12,9 +13,10 @@ import Algoritmos.Modelo.Usuario;
  */
 public class Pearson implements MedidaSimilitud {
 
+
     @Override
-    public float similitud(Usuario u1, Usuario u2) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public float similitud(Pelicula p1, Pelicula p2) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
