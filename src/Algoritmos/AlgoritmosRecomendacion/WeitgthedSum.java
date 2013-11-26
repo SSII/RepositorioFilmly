@@ -4,8 +4,11 @@
  */
 package Algoritmos.AlgoritmosRecomendacion;
 
+import Algoritmos.MedidasSimilitud.MedidaSimilitud;
 import Algoritmos.Modelo.Pelicula;
 import Algoritmos.Modelo.Usuario;
+import Algoritmos.Modelo.Valoracion;
+import java.util.List;
 
 /**
  *
@@ -13,9 +16,15 @@ import Algoritmos.Modelo.Usuario;
  */
 public class WeitgthedSum implements AlgoritmoRecomendacion {
     
+    List<Valoracion> usuarioPeliculas;
+    List<Valoracion> peliculaUsuarios;
+    MedidaSimilitud medida;
+    Usuario usuario;
+    Pelicula pelicula;
+    float similitud;
     boolean ws;
 
-    public WeitgthedSum(boolean ws) {
+    public WeitgthedSum(boolean ws, List<Valoracion> valoraciones, float similitud, Usuario usuario, Pelicula pelicula, MedidaSimilitud medida) {
         this.ws = ws;
         
     }
