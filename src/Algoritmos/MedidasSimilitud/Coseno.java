@@ -18,5 +18,10 @@ public class Coseno implements MedidaSimilitud {
     public float similitud(Pelicula p1, Pelicula p2) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public float similitud(Usuario u1, Usuario u2) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

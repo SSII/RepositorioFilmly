@@ -15,17 +15,15 @@ import java.util.List;
  */
 public class ItemAverageAdjustment implements AlgoritmoRecomendacion {
     
-    List<Valoracion> usuarioPeliculas;
-    List<Valoracion> peliculaUsuarios;
-    MedidaSimilitud medida;
-    Usuario usuario;
-    Pelicula pelicula;
-    float similitud;
-    int n;
+    List<Valoracion> usuarioPeliculas; // Lista de todas las valoraciones que un usuario que ha hecho a las peliculas
+    List<Valoracion> peliculaUsuarios; // Lista de valoraciones que se han hecho sobre una película
+    MedidaSimilitud medida; // Objeto medida de similitud (Coseno o Pearson)
+    Usuario usuario; // Usuario actual
+    Pelicula pelicula; // Película actual
+    int n; // Tipo de algoritmo; -1 algoritmo general o n mayor que 0, n-dados
 
     public ItemAverageAdjustment(int n, List<Valoracion> valoraciones, float similitud, Usuario usuario, Pelicula pelicula, MedidaSimilitud medida) {
 
-        this.similitud = similitud;
         this.usuario = usuario;
         this.pelicula = pelicula;
         this.peliculaUsuarios = new LinkedList<>();
@@ -48,7 +46,8 @@ public class ItemAverageAdjustment implements AlgoritmoRecomendacion {
         
     }
     
-    private float mediaUsuario(Usuario u){
+    @Override
+    public float mediaUsuario(){
         
         float media = 0;
         
@@ -60,7 +59,8 @@ public class ItemAverageAdjustment implements AlgoritmoRecomendacion {
         
     }
     
-    private float mediaPelicula(Pelicula p){
+    @Override
+    public float mediaPelicula(){
         
         float media = 0;
         
@@ -74,7 +74,7 @@ public class ItemAverageAdjustment implements AlgoritmoRecomendacion {
     
     private float correlacion(Usuario u){
         
-        float media = mediaUsuario(u);
+        float media = mediaUsuario();
         int acum = 0;
         
         for(int i=0; i<n; ++i){
@@ -97,7 +97,7 @@ public class ItemAverageAdjustment implements AlgoritmoRecomendacion {
            acum += Math.abs(medida.similitud(pelicula, usuarioPeliculas.get(i).getPelicula()));
        }
            
-       return correlacion(usuario)/acum + mediaPelicula(pelicula);
+       return correlacion(usuario)/acum + mediaPelicula();
         
     }
 }
