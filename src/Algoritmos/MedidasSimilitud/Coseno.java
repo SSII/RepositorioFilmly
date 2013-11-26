@@ -13,6 +13,7 @@ import Algoritmos.Modelo.Usuario;
  */
 public class Coseno implements MedidaSimilitud {
 
+
     @Override
     public float similitud(Pelicula p1, Pelicula p2) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
