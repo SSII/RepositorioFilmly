@@ -4,6 +4,8 @@
  */
 package Algoritmos.AlgoritmosRecomendacion;
 
+import Algoritmos.Modelo.Valoracion;
+import Algoritmos.persistencia.GestorPersistencia;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -14,6 +16,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 /**
  *
@@ -24,11 +28,33 @@ public class Algoritmo {
     public List<Map> puntuacionUsuarioPelicula; /*Lista de mapas que contienen un usuario y su puntuacion sobre las distintas peliculas*/
     public List items; /*Lista de peliculas*/
     public List usuarios; /*Lista de usuarios*/
+    private List valoraciones;
     
     public Algoritmo(){
+        GestorPersistencia.crearConexion();
+        EntityManager em = GestorPersistencia.getInstancia().getEntityManager();
+        
         puntuacionUsuarioPelicula = new LinkedList<>();
-        items = new LinkedList();
+        items = new LinkedList<>();
+        
+      //  Query q = em.createNativeQuery("select *  from peliculas", Pelicula.class);
+      //  Query q2 = em.createNativeQuery("select * from usuarios", Usuario.class);
+          Query q3 = em.createNativeQuery("select * from valoraciones", Valoracion.class);
+      //  items = q.getResultList();
+//        for(int i = 0; i < items.size(); i++) {
+//            
+//            System.out.println( ((Pelicula)items.get(i)).getTitulo());
+//            
+//        }
+        
         usuarios = new LinkedList();
+        //usuarios = q2.getResultList();
+        
+        valoraciones = new LinkedList();
+        valoraciones = q3.getResultList();
+        
+        
+        System.out.println("TAM: " + valoraciones.size());
     }
     
     public void cargarDatos(){
@@ -102,7 +128,7 @@ public class Algoritmo {
         
         Algoritmo a = new Algoritmo();
         
-        a.cargarDatos();
+       // a.cargarDatos();
    
     }
 }

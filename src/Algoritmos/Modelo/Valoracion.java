@@ -26,7 +26,10 @@ public class Valoracion implements Serializable {
     
     @Column(name="rate")
     int _puntuacion;
+    
+    @Column(name="comentario")
     String _comentario;
+    
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="idUser", referencedColumnName = "id")
     Usuario _usuario;

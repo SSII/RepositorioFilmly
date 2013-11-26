@@ -11,12 +11,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author Alvaro
  */
 @Entity
+@Table(name="peliculas")
 public class Pelicula implements Serializable {
     
     @Column(name="titulo")
@@ -26,7 +28,7 @@ public class Pelicula implements Serializable {
     @Id
     @Column(name="id")
     private int _id;
-    @OneToMany(targetEntity=Valoracion.class, cascade=CascadeType.ALL, mappedBy="valoraciones")
+    @OneToMany(targetEntity=Valoracion.class, cascade=CascadeType.ALL, mappedBy="_puntuacion")
     private List<Valoracion> _valoraciones;
 
     public Pelicula() {
