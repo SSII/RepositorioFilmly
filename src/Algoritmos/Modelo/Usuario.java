@@ -4,16 +4,32 @@
  */
 package Algoritmos.Modelo;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  *
  * @author Alvaro
  */
-public class Usuario {
+@Entity
+public class Usuario implements Serializable {
+    
+    @Column(name="nombre")
     String _nombre;
+    @Column(name="nick")
     String _nick;
+    @Column(name="pass")
     String _pass;
+    @Column(name="email")
     String _email;
+    @Id
+    @Column(name="id")
     String _id;
+
+    public Usuario() {
+    }
 
     public Usuario(String _nombre, String _nick, String _pass, String _email, String _id) {
         this._nombre = _nombre;
