@@ -17,6 +17,7 @@ public class WeitgthedSum implements AlgoritmoRecomendacion {
 
     public WeitgthedSum(boolean ws) {
         this.ws = ws;
+        
     }
     
     public float prediccion(Usuario u, Pelicula p) {
