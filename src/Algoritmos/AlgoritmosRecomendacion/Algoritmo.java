@@ -50,20 +50,13 @@ public class Algoritmo {
         usuarios = q2.getResultList();
         valoraciones = q3.getResultList();
         
-        for (Pelicula p : items) {
+        
             
-            Query buscaValoraciones = em.createNativeQuery("select * from valoraciones v where v.idPelicula = :f1 ", Valoracion.class);
-            q.setParameter("f1", p.getId());
+        Query buscaValoraciones = em.createNativeQuery("select * from valoraciones v where v.idPelicula = 1625 ", Valoracion.class);
             
-            p.setValoraciones(buscaValoraciones.getResultList());
+        items.get(1624).setValoraciones(buscaValoraciones.getResultList());
             
-        }
          
-        for (int i=0; i < items.get(0).getValoraciones().size(); i++) {
-            
-            
-            
-        }
         
         System.out.println("Tamaño peliculas: " + items.size());
         System.out.println("Tamaño usuarios: " + usuarios.size());
