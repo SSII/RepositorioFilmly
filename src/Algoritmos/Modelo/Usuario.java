@@ -5,9 +5,13 @@
 package Algoritmos.Modelo;
 
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -29,6 +33,8 @@ public class Usuario implements Serializable {
     @Id
     @Column(name="id")
     String _id;
+    @OneToMany(targetEntity=Valoracion.class, cascade=CascadeType.ALL, mappedBy="_puntuacion")
+    private List<Valoracion> _valoraciones;
 
     public Usuario() {
     }
@@ -39,6 +45,7 @@ public class Usuario implements Serializable {
         this._pass = _pass;
         this._email = _email;
         this._id = _id;
+        this._valoraciones = new LinkedList<>();
     }
 
     public String getNombre() {
@@ -79,6 +86,18 @@ public class Usuario implements Serializable {
 
     public void setId(String _id) {
         this._id = _id;
+    }
+    
+    public void setValoraciones(List<Valoracion> valoraciones) {
+        
+        _valoraciones = valoraciones;
+        
+    }
+    
+    public List<Valoracion> getValoraciones() {
+        
+        return _valoraciones;
+        
     }
     
     

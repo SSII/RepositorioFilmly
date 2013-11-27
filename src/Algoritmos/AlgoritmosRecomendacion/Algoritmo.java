@@ -8,16 +8,9 @@ import Algoritmos.Modelo.Pelicula;
 import Algoritmos.Modelo.Usuario;
 import Algoritmos.Modelo.Valoracion;
 import Algoritmos.persistencia.GestorPersistencia;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
@@ -52,9 +45,13 @@ public class Algoritmo {
         
         
             
-        Query buscaValoraciones = em.createNativeQuery("select * from valoraciones v where v.idPelicula = 1625 ", Valoracion.class);
+        Query buscaValoraciones = em.createNativeQuery("select * from valoraciones v where v.idUser = 265 ", Valoracion.class);
             
-        items.get(1624).setValoraciones(buscaValoraciones.getResultList());
+        usuarios.get(1).setValoraciones(buscaValoraciones.getResultList());
+        
+        System.out.println("TAMAÑO: " + usuarios.get(1).getValoraciones().size());
+        
+        
             
          
         
