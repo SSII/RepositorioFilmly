@@ -74,13 +74,13 @@ public class Algoritmo {
         
         System.out.println("TAMAÑO: " + usuarios.get(1).getValoraciones().size());
         
-        
-            
-        Query buscaValoraciones = em.createNativeQuery("select * from valoraciones v where v.idUser = 265 ", Valoracion.class);
-            
-        usuarios.get(1).setValoraciones(buscaValoraciones.getResultList());
-        
-        System.out.println("TAMAÑO: " + usuarios.get(1).getValoraciones().size());
+//        
+//            
+//        Query buscaValoraciones = em.createNativeQuery("select * from valoraciones v where v.idUser = 265 ", Valoracion.class);
+//            
+//        usuarios.get(1).setValoraciones(buscaValoraciones.getResultList());
+//        
+//        System.out.println("TAMAÑO: " + usuarios.get(1).getValoraciones().size());
         
         
             
