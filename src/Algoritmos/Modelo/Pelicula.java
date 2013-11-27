@@ -69,10 +69,7 @@ public class Pelicula implements Serializable {
 
     public List<Valoracion> getValoraciones() {
         return _valoraciones;
-    }
-    
-    psdfodhfoiñsjdfgñlsjfgñisjdfgijsdfgñljsdgfñljsfg
-    
+    }   
     
     
 }
