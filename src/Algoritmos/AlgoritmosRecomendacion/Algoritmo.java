@@ -44,8 +44,9 @@ public class Algoritmo {
         usuarios = q2.getResultList();
         
             Particion p = new Particion(7);
-            
-            
+
+            Query buscaValoraciones = em.createNativeQuery("select * from valoraciones v where v.idUser = 265 ", Valoracion.class);
+
            p.crearParticiones(usuarios);
            
            List<Usuario> part;
@@ -69,6 +70,17 @@ public class Algoritmo {
 //        System.out.println("Tamaño peliculas: " + items.size());
 //        System.out.println("Tamaño usuarios: " + usuarios.size());
 //        System.out.println("Tamaño valoraciones: " + valoraciones.size());
+        usuarios.get(1).setValoraciones(buscaValoraciones.getResultList());
+        
+        System.out.println("TAMAÑO: " + usuarios.get(1).getValoraciones().size());
+        
+        
+            
+         
+        
+        System.out.println("Tamaño peliculas: " + items.size());
+        System.out.println("Tamaño usuarios: " + usuarios.size());
+        System.out.println("Tamaño valoraciones: " + valoraciones.size());
     }
     
     /*public void cargarDatos(){
