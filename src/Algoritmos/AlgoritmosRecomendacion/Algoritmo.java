@@ -4,6 +4,8 @@
  */
 package Algoritmos.AlgoritmosRecomendacion;
 
+import Algoritmos.Modelo.Pelicula;
+import Algoritmos.Modelo.Usuario;
 import Algoritmos.Modelo.Valoracion;
 import Algoritmos.persistencia.GestorPersistencia;
 import java.io.BufferedReader;
@@ -26,9 +28,9 @@ import javax.persistence.Query;
 public class Algoritmo {
 
     public List<Map> puntuacionUsuarioPelicula; /*Lista de mapas que contienen un usuario y su puntuacion sobre las distintas peliculas*/
-    public List items; /*Lista de peliculas*/
-    public List usuarios; /*Lista de usuarios*/
-    private List valoraciones;
+    public List<Pelicula> items; /*Lista de peliculas*/
+    public List<Usuario> usuarios; /*Lista de usuarios*/
+    private List<Valoracion> valoraciones;
     
     public Algoritmo(){
         GestorPersistencia.crearConexion();
@@ -36,28 +38,39 @@ public class Algoritmo {
         
         puntuacionUsuarioPelicula = new LinkedList<>();
         items = new LinkedList<>();
-        
-      //  Query q = em.createNativeQuery("select *  from peliculas", Pelicula.class);
-      //  Query q2 = em.createNativeQuery("select * from usuarios", Usuario.class);
-          Query q3 = em.createNativeQuery("select * from valoraciones", Valoracion.class);
-      //  items = q.getResultList();
-//        for(int i = 0; i < items.size(); i++) {
-//            
-//            System.out.println( ((Pelicula)items.get(i)).getTitulo());
-//            
-//        }
-        
         usuarios = new LinkedList();
-        //usuarios = q2.getResultList();
-        
         valoraciones = new LinkedList();
+        
+        Query q = em.createNativeQuery("select *  from peliculas", Pelicula.class);
+        Query q2 = em.createNativeQuery("select * from usuarios", Usuario.class);
+        Query q3 = em.createNativeQuery("select * from valoraciones", Valoracion.class);
+        
+        
+        items = q.getResultList();      
+        usuarios = q2.getResultList();
         valoraciones = q3.getResultList();
         
+        for (Pelicula p : items) {
+            
+            Query buscaValoraciones = em.createNativeQuery("select * from valoraciones v where v.idPelicula = :f1 ", Valoracion.class);
+            q.setParameter("f1", p.getId());
+            
+            p.setValoraciones(buscaValoraciones.getResultList());
+            
+        }
+         
+        for (int i=0; i < items.get(0).getValoraciones().size(); i++) {
+            
+            
+            
+        }
         
-        System.out.println("TAM: " + valoraciones.size());
+        System.out.println("Tamaño peliculas: " + items.size());
+        System.out.println("Tamaño usuarios: " + usuarios.size());
+        System.out.println("Tamaño valoraciones: " + valoraciones.size());
     }
     
-    public void cargarDatos(){
+    /*public void cargarDatos(){
         BufferedReader br = null;
         
         try{ 
@@ -117,7 +130,7 @@ public class Algoritmo {
          } catch (IOException ex) {
                Logger.getLogger(Algoritmo.class.getName()).log(Level.SEVERE, null, ex);
          }
-    }
+    }*/
     
     
     /**

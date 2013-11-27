@@ -11,6 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Query;
 import javax.persistence.Table;
 
 /**
@@ -69,7 +70,13 @@ public class Pelicula implements Serializable {
 
     public List<Valoracion> getValoraciones() {
         return _valoraciones;
-    }   
+    }
+    
+    public void setValoraciones(List<Valoracion> valoraciones) {
+        
+        _valoraciones = valoraciones;
+        
+    }
     
     
 }
