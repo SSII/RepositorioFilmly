@@ -35,28 +35,28 @@ public class Algoritmo {
         usuarios = new LinkedList();
         valoraciones = new LinkedList();
 //        
-//        Query q = em.createNativeQuery("select *  from peliculas", Pelicula.class);
+//      Query q = em.createNativeQuery("select *  from peliculas", Pelicula.class);
         Query q2 = em.createNativeQuery("select * from usuarios", Usuario.class);
-//        Query q3 = em.createNativeQuery("select * from valoraciones", Valoracion.class);
+//      Query q3 = em.createNativeQuery("select * from valoraciones", Valoracion.class);
 //        
 //        
-//        items = q.getResultList();      
+//      items = q.getResultList();      
         usuarios = q2.getResultList();
         
-            Particion p = new Particion(7);
+        Particion p = new Particion(7);
 
-            Query buscaValoraciones = em.createNativeQuery("select * from valoraciones v where v.idUser = 265 ", Valoracion.class);
+        Query buscaValoraciones = em.createNativeQuery("select * from valoraciones v where v.idUser = 265 ", Valoracion.class);
 
-           p.crearParticiones(usuarios);
-           
-           List<Usuario> part;
-           for(int i=0; i<7; i++){
-               part = p.getParticion(i);
-               System.out.println("NUEVA PARTICION: " + i);
-               for(int j = 0; j< part.size(); j++){
-                   System.out.println("ID: " + part.get(j).getId());
-               }
-           }
+        p.crearParticiones(usuarios);
+
+        List<Usuario> part;
+        for(int i=0; i<7; i++){
+            part = p.getParticion(i);
+            System.out.println("NUEVA PARTICION: " + i);
+            for(int j = 0; j< part.size(); j++){
+                System.out.println("ID: " + part.get(j).getId());
+            }
+        }
 //        valoraciones = q3.getResultList();
 //        
 //        
