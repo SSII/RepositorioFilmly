@@ -7,17 +7,11 @@ package Algoritmos.AlgoritmosRecomendacion;
 import Algoritmos.Modelo.Pelicula;
 import Algoritmos.Modelo.Usuario;
 import Algoritmos.Modelo.Valoracion;
+import Algoritmos.Prueba.Particion;
 import Algoritmos.persistencia.GestorPersistencia;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
@@ -40,27 +34,41 @@ public class Algoritmo {
         items = new LinkedList<>();
         usuarios = new LinkedList();
         valoraciones = new LinkedList();
-        
-        Query q = em.createNativeQuery("select *  from peliculas", Pelicula.class);
+//        
+//        Query q = em.createNativeQuery("select *  from peliculas", Pelicula.class);
         Query q2 = em.createNativeQuery("select * from usuarios", Usuario.class);
-        Query q3 = em.createNativeQuery("select * from valoraciones", Valoracion.class);
-        
-        
-        items = q.getResultList();      
+//        Query q3 = em.createNativeQuery("select * from valoraciones", Valoracion.class);
+//        
+//        
+//        items = q.getResultList();      
         usuarios = q2.getResultList();
-        valoraciones = q3.getResultList();
         
-        
+            Particion p = new Particion(7);
             
-        Query buscaValoraciones = em.createNativeQuery("select * from valoraciones v where v.idPelicula = 1625 ", Valoracion.class);
             
-        items.get(1624).setValoraciones(buscaValoraciones.getResultList());
-            
-         
-        
-        System.out.println("Tamaño peliculas: " + items.size());
-        System.out.println("Tamaño usuarios: " + usuarios.size());
-        System.out.println("Tamaño valoraciones: " + valoraciones.size());
+           p.crearParticiones(usuarios);
+           
+           List<Usuario> part;
+           for(int i=0; i<7; i++){
+               part = p.getParticion(i);
+               System.out.println("NUEVA PARTICION: " + i);
+               for(int j = 0; j< part.size(); j++){
+                   System.out.println("ID: " + part.get(j).getId());
+               }
+           }
+//        valoraciones = q3.getResultList();
+//        
+//        
+//            
+//        Query buscaValoraciones = em.createNativeQuery("select * from valoraciones v where v.idPelicula = 1625 ", Valoracion.class);
+//            
+//        items.get(1624).setValoraciones(buscaValoraciones.getResultList());
+//            
+//         
+//        
+//        System.out.println("Tamaño peliculas: " + items.size());
+//        System.out.println("Tamaño usuarios: " + usuarios.size());
+//        System.out.println("Tamaño valoraciones: " + valoraciones.size());
     }
     
     /*public void cargarDatos(){
